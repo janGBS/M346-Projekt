@@ -20,15 +20,20 @@ echo "Packaging Lambda function..."
 LAMBDA_ZIP="lambda_function.zip"
 zip -j "$LAMBDA_ZIP" lambda_function.py
 
-echo "Deploying Lambda function..."
-LAMBDA_ROLE_ARN=arn:aws:iam::066083534964:role/LabRole
-aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
-    --runtime python3.9 \
-    --role ${LAMBDA_ROLE_ARN} \
-    --handler lambda_function.lambda_handler \
-    --zip-file fileb://"$LAMBDA_ZIP" \
-    --environment "Variables={OUTPUT_BUCKET=$OUT_BUCKET_NAME}" \
-    --timeout 15
+echo "Checking if Lambda function exists..."
+if aws lambda get-function --function-name "$LAMBDA_FUNCTION_NAME" > /dev/null 2>&1; then
+    echo "Lambda function $LAMBDA_FUNCTION_NAME already exists. Skipping creation."
+else
+    echo "Deploying Lambda function..."
+    LAMBDA_ROLE_ARN=arn:aws:iam::066083534964:role/LabRole
+    aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
+        --runtime python3.9 \
+        --role ${LAMBDA_ROLE_ARN} \
+        --handler lambda_function.lambda_handler \
+        --zip-file fileb://"$LAMBDA_ZIP" \
+        --environment "Variables={OUTPUT_BUCKET=$OUT_BUCKET_NAME}" \
+        --timeout 15
+fi
 
 echo "Adding Lambda permission for S3..."
 aws lambda add-permission \
@@ -37,7 +42,6 @@ aws lambda add-permission \
   --statement-id s3invoke \
   --action "lambda:InvokeFunction" \
   --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
-#  --source-account <AWS_ACCOUNT_ID>
 
 echo "Setting up S3 event trigger for Lambda..."
 aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --notification-configuration '{
