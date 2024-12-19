@@ -27,8 +27,17 @@ aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
     --role ${LAMBDA_ROLE_ARN} \
     --handler lambda_function.lambda_handler \
     --zip-file fileb://"$LAMBDA_ZIP" \
-    --environment Variables="{OUT_BUCKET_NAME=$OUT_BUCKET_NAME}" \
+    --environment "Variables={OUTPUT_BUCKET=$OUT_BUCKET_NAME}" \
     --timeout 15
+
+echo "Adding Lambda permission for S3..."
+aws lambda add-permission \
+  --function-name ${LAMBDA_FUNCTION_NAME} \
+  --principal s3.amazonaws.com \
+  --statement-id s3invoke \
+  --action "lambda:InvokeFunction" \
+  --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
+  --source-account <AWS_ACCOUNT_ID>
 
 echo "Setting up S3 event trigger for Lambda..."
 aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --notification-configuration '{
