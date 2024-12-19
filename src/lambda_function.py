@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     # Hole Dateiinfo aus dem Event
     source_bucket = event['Records'][0]['s3']['bucket']['name']
     source_key = event['Records'][0]['s3']['object']['key']
-    target_bucket = os.environ['OUT_BUCKET_NAME']  # Dynamischer Ziel-Bucket
+    target_bucket = os.environ['OUTPUT_BUCKET']  # Dynamisch aus Umgebungsvariable
     target_key = source_key.replace('.csv', '.json')
 
     try:
