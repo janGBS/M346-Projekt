@@ -37,7 +37,7 @@ aws lambda add-permission \
   --statement-id s3invoke \
   --action "lambda:InvokeFunction" \
   --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
-  --source-account <AWS_ACCOUNT_ID>
+#  --source-account <AWS_ACCOUNT_ID>
 
 echo "Setting up S3 event trigger for Lambda..."
 aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --notification-configuration '{
