@@ -154,3 +154,78 @@ ID;Nachname;Vorname;Strasse;PLZ;Ort;Tel
 
 - **Bei Erfolg**: `StatusCode 200` mit einer Erfolgsnachricht.
 - **Bei Fehlern**: `StatusCode 500` und eine detaillierte Fehlermeldung. 
+
+# Testbericht
+
+**Durchgeführt am:** 20.12.2024, 23:00  
+**Durchgeführt von:** jan.hollenstein@edu.gbssg.ch
+**Dokumentiert von:** pascal.aeschbacher@edu.gbssg.ch
+
+---
+
+## Bucket-Erstellung
+
+![Bucket-Erstellung](bucket-creation.png)  
+
+### Ergebnis
+
+Die Buckets wurden erfolgreich erstellt mit den Namen:  
+- `csv-to-json-in-09da2236`  
+- `csv-to-json-out-cad38f94`  
+Die generierten Namen enthalten eindeutige IDs, wodurch Namenskonflikte ausgeschlossen werden.
+
+### Mögliche Fehlerquellen und Lösungen
+
+1. **Falsche Region:**
+   - Region in der Datei `init.sh` auf `us-east-1` setzen.
+2. **Falsche AWS Credentials:**
+   - Zugangsdaten korrekt konfigurieren, wie in der Dokumentation beschrieben (`aws configure`).
+3. **Cloud-Dienst nicht aktiv:**
+   - AWS Cloud-Dienste starten und sicherstellen, dass die Umgebung verfügbar ist.
+4. **Bucket existiert bereits:**
+   - Aufgrund der ID am Ende des Namens ist dies unwahrscheinlich. Falls es dennoch passiert, den bestehenden Bucket manuell in der AWS-Konsole löschen.
+
+---
+
+## Erstellung der Lambda-Funktion
+
+![Lambda-Erstellung](lambda-creation.png)  
+
+### Ergebnis
+
+Die Lambda-Funktion wurde erfolgreich erstellt und mit den korrekten Parametern konfiguriert. Alle Einstellungen entsprechen der Vorlage, und die Funktion ist einsatzbereit.
+
+### Mögliche Fehlerquellen und Lösungen
+
+1. **Datei nicht vorhanden:**
+   - Pfad zur Lambda-Datei überprüfen. Solange das Git-Repository nicht manuell verändert wurde, sollte der Pfad korrekt sein.
+2. **Funktion existiert bereits:**
+   - Falls die Funktion bereits existiert, wird sie durch das Skript automatisch gelöscht und neu erstellt. Sollte dies nicht geschehen, die Funktion manuell in der AWS-Konsole entfernen.
+3. **IAM-Rollenberechtigungen:**
+   - Die IAM-Rolle `LabRole` muss die erforderlichen Berechtigungen besitzen. Diese werden beim Skriptstart ausgelesen und als Variable gespeichert.
+
+---
+
+## CSV-Upload und JSON-Download
+
+![CSV-Upload und JSON-Download](csv-to-json.png)  
+
+### Ergebnis
+
+Die CSV-Datei wurde erfolgreich in den Input-Bucket hochgeladen und anschließend von der Lambda-Funktion in eine JSON-Datei umgewandelt. Die Ausgabe wurde im Output-Bucket gespeichert.  
+Zusätzlich wurde getestet, ob unterschiedliche Delimiter-Zeichen (z. B. `;`, `,`, `|`) korrekt verarbeitet werden. Alle Tests waren erfolgreich.
+
+### Mögliche Fehlerquellen und Lösungen
+
+1. **Datei nicht vorhanden:**
+   - Standardmäßig ist die Datei korrekt im Repository enthalten. Wurde das Repository manuell geändert, muss der Pfad im Code angepasst werden.
+2. **Timeout-Fehler:**
+   - Sollte die Lambda-Funktion länger als 15 Sekunden für die Verarbeitung benötigen, das Skript erneut ausführen. Beim zweiten Versuch tritt der Fehler in der Regel nicht mehr auf.
+3. **Falsche Ausgabe beim Download:**
+   - Ungültige oder nicht angepasste Delimiter-Zeichen können die Konvertierung beeinträchtigen. Stellen Sie sicher, dass die verwendeten Delimiter im Code korrekt gesetzt sind.
+
+---
+
+## Fazit
+
+Alle Tests wurden erfolgreich durchgeführt, und die erwarteten Ergebnisse konnten erzielt werden. Potenzielle Fehler wurden analysiert und entsprechende Lösungen dokumentiert, um eine reibungslose Ausführung des Projekts sicherzustellen.
