@@ -1,7 +1,7 @@
 # Datei:          lambda_function.py
-# Autor:          [Ihr Name]
+# Autor:          jan.hollenstein@edu.gbssg.ch, pascal.aeschbacher@edu.gbssg.ch, andrin.Sutter@edu.gbssg.ch
 # Datum:          20.12.2024
-# Version:        1.1
+# Version:        1.3
 # Beschreibung:   AWS Lambda-Funktion zur Konvertierung von CSV-Dateien in JSON-Dateien mit einstellbaren Parametern wie Delimiter.
 
 import csv
