@@ -12,13 +12,23 @@ set -e
 AWS_REGION="us-east-1"
 IN_BUCKET_NAME="csv-to-json-in-$(uuidgen | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1)"
 OUT_BUCKET_NAME="csv-to-json-out-$(uuidgen | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1)"
-LAMBDA_ROLE_NAME="CsvToJsonLambdaRole"
+LAMBDA_ROLE_NAME="LabRole"  # Name der Rolle, nicht die ARN
 LAMBDA_FUNCTION_NAME="CsvToJsonFunction"
 INPUT_FILE="tests/testdata.csv"
 OUTPUT_FILE="tests/testdata.json"
 
-#Buckets werden erstllt mit den namen welche oben defineirt wurden.
+# Abrufen der ARN für die LabRole
+echo "Retrieving ARN for IAM role $LAMBDA_ROLE_NAME..."
+LAMBDA_ROLE_ARN=$(aws iam get-role --role-name "$LAMBDA_ROLE_NAME" --query "Role.Arn" --output text 2>/dev/null)
 
+if [ -z "$LAMBDA_ROLE_ARN" ]; then
+    echo "Error: IAM role $LAMBDA_ROLE_NAME does not exist in this AWS account."
+    echo "Please create the role and rerun this script."
+    exit 1
+fi
+echo "Role ARN retrieved: $LAMBDA_ROLE_ARN"
+
+# Buckets erstellen
 echo "Creating S3 buckets in $AWS_REGION..."
 if [ "$AWS_REGION" == "us-east-1" ]; then
     aws s3api create-bucket --bucket "$IN_BUCKET_NAME" --region "$AWS_REGION"
@@ -28,8 +38,7 @@ else
     aws s3api create-bucket --bucket "$OUT_BUCKET_NAME" --region "$AWS_REGION" --create-bucket-configuration LocationConstraint="$AWS_REGION"
 fi
 
-
-#Lambda function wird in AWS cloud erstellt.
+# Lambda-Funktion erstellen
 echo "Packaging Lambda function..."
 LAMBDA_ZIP="lambda_function.zip"
 zip -j "$LAMBDA_ZIP" lambda_function.py
@@ -42,7 +51,6 @@ if aws lambda get-function --function-name "$LAMBDA_FUNCTION_NAME" > /dev/null 2
 fi
 
 echo "Deploying Lambda function..."
-LAMBDA_ROLE_ARN=arn:aws:iam::066083534964:role/LabRole
 aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
     --runtime python3.9 \
     --role ${LAMBDA_ROLE_ARN} \
@@ -51,17 +59,16 @@ aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
     --environment "Variables={OUTPUT_BUCKET=$OUT_BUCKET_NAME}" \
     --timeout 15
 
-#Berechtigungen werden erstellt.
+# Berechtigungen hinzufügen
 echo "Adding Lambda permission for S3..."
 aws lambda add-permission \
   --function-name ${LAMBDA_FUNCTION_NAME} \
   --principal s3.amazonaws.com \
   --statement-id s3invoke \
   --action "lambda:InvokeFunction" \
-  --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
+  --source-arn arn:aws:s3:::${IN_BUCKET_NAME}
 
-
-#Trigger wird erstellt damit wenn input file kommt es umgewandelt wird.
+# Trigger konfigurieren
 echo "Setting up S3 event trigger for Lambda..."
 aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --notification-configuration '{
     "LambdaFunctionConfigurations": [
@@ -72,7 +79,7 @@ aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --not
     ]
 }'
 
-#upload file und und wider ouput in kosole ausgeben als json
+# Datei hochladen und Verarbeitung testen
 echo "Uploading file to Input Bucket..."
 aws s3 cp "$INPUT_FILE" "s3://$IN_BUCKET_NAME/$INPUT_FILE"
 
