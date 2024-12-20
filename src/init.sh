@@ -1,3 +1,11 @@
+# Datei:          init.sh
+# Autor:          jan.hollenstein@edu.gbssg.ch, pascal.aeschbacher@edu.gbssg.ch, andrin.Sutter@edu.gbssg.ch
+# Datum:          20.12.2024
+# Version:        1.9
+# Beschreibung:   Basch skript für automatisiertes erstellen von buckets, lamda fukton erstellen und csv datei in json datei umwandeln in AWS cloud.
+
+
+
 #!/bin/bash
 set -e
 
@@ -9,6 +17,8 @@ LAMBDA_FUNCTION_NAME="CsvToJsonFunction"
 INPUT_FILE="tests/testdata.csv"
 OUTPUT_FILE="tests/testdata.json"
 
+#Buckets werden erstllt mit den namen welche oben defineirt wurden.
+
 echo "Creating S3 buckets in $AWS_REGION..."
 if [ "$AWS_REGION" == "us-east-1" ]; then
     aws s3api create-bucket --bucket "$IN_BUCKET_NAME" --region "$AWS_REGION"
@@ -18,6 +28,8 @@ else
     aws s3api create-bucket --bucket "$OUT_BUCKET_NAME" --region "$AWS_REGION" --create-bucket-configuration LocationConstraint="$AWS_REGION"
 fi
 
+
+#Lambda function wird in AWS cloud erstellt.
 echo "Packaging Lambda function..."
 LAMBDA_ZIP="lambda_function.zip"
 zip -j "$LAMBDA_ZIP" lambda_function.py
@@ -39,6 +51,7 @@ aws lambda create-function --function-name "$LAMBDA_FUNCTION_NAME" \
     --environment "Variables={OUTPUT_BUCKET=$OUT_BUCKET_NAME}" \
     --timeout 15
 
+#Berechtigungen werden erstellt.
 echo "Adding Lambda permission for S3..."
 aws lambda add-permission \
   --function-name ${LAMBDA_FUNCTION_NAME} \
@@ -47,6 +60,8 @@ aws lambda add-permission \
   --action "lambda:InvokeFunction" \
   --source-arn arn:aws:s3:::${IN_BUCKET_NAME} \
 
+
+#Trigger wird erstellt damit wenn input file kommt es umgewandelt wird.
 echo "Setting up S3 event trigger for Lambda..."
 aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --notification-configuration '{
     "LambdaFunctionConfigurations": [
@@ -57,6 +72,7 @@ aws s3api put-bucket-notification-configuration --bucket "$IN_BUCKET_NAME" --not
     ]
 }'
 
+#upload file und und wider ouput in kosole ausgeben als json
 echo "Uploading file to Input Bucket..."
 aws s3 cp "$INPUT_FILE" "s3://$IN_BUCKET_NAME/$INPUT_FILE"
 
