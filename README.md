@@ -1,4 +1,45 @@
+# Inhaltsverzeichnis
 
+1. [Setup-Anleitung](#setup-anleitung)  
+   - [Schritt 1: Linux Ubuntu Maschine starten](#schritt-1-linux-ubuntu-maschine-starten)  
+   - [Schritt 2: Git-Repository klonen](#schritt-2-git-repository-klonen)  
+   - [Schritt 3: AWS Cloud vorbereiten](#schritt-3-aws-cloud-vorbereiten)  
+   - [Schritt 4: Key auf der Linux-Maschine einfügen](#schritt-4-key-auf-der-linux-maschine-einfügen)  
+   - [Schritt 5: AWS CLI installieren (falls nicht vorhanden)](#schritt-5-aws-cli-installieren-falls-nicht-vorhanden)  
+
+2. [Aufbau des Services](#aufbau-des-services)  
+   - [Projektaufbau](#projektaufbau)  
+   - [AWS S3-Buckets](#aws-s3-buckets)  
+   - [AWS Lambda-Funktion](#aws-lambda-funktion)  
+   - [Bash-Skript (`init.sh`)](#bash-skript-initsh)  
+
+3. [Lambda-Funktion](#lambda-funktion)  
+   - [Trigger](#trigger)  
+   - [Parameter](#parameter)  
+   - [Fehlerbehandlung](#fehlerbehandlung)  
+   - [Output](#output)  
+
+4. [Testdaten](#testdaten)  
+   - [Beispiel CSV-Datei (Eingabe)](#beispiel-csv-datei-eingabe)  
+   - [Erwartete JSON-Ausgabe](#erwartete-json-ausgabe)  
+
+5. [Fehlerprotokollierung](#fehlerprotokollierung)  
+   - [S3-Events](#s3-events)  
+   - [Lambda-Ausgabe](#lambda-ausgabe)  
+
+6. [Testbericht](#testbericht)  
+   - [Bucket-Erstellung](#bucket-erstellung)  
+   - [Erstellung der Lambda-Funktion](#erstellung-der-lambda-funktion)  
+   - [CSV-Upload und JSON-Download](#csv-upload-und-json-download)  
+
+7. [Fazit](#fazit)  
+
+8. [Quellen](#quellen)  
+
+9. [Reflexion](#reflexion)  
+   - [Reflexion Jan Hollenstein](#reflexion-jan-hollenstein)  
+   - [Reflexion Pascal](#reflexion-pascal)  
+   - [Reflexion Andrin](#reflexion-andrin)  
 # Setup-Anleitung
 
 ## Schritt 1: Linux Ubuntu Maschine starten
