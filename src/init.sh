@@ -6,8 +6,8 @@ IN_BUCKET_NAME="csv-to-json-in-$(uuidgen | tr '[:upper:]' '[:lower:]' | cut -d'-
 OUT_BUCKET_NAME="csv-to-json-out-$(uuidgen | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1)"
 LAMBDA_ROLE_NAME="CsvToJsonLambdaRole"
 LAMBDA_FUNCTION_NAME="CsvToJsonFunction"
-INPUT_FILE="sample.csv"
-OUTPUT_FILE="output.json"
+INPUT_FILE="tests/testdata.csv"
+OUTPUT_FILE="tests/destata.json"
  
 echo "Creating S3 buckets in $AWS_REGION..."
 if [ "$AWS_REGION" == "us-east-1" ]; then
