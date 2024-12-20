@@ -73,10 +73,7 @@ projektverzeichnis/
 │       ├── testdata.csv  
 │       └── testdata.json 
 ├── README.md # Dokumentation 
-├── Reflexion_ASU.md # Reflexion von ASU 
-├── Reflexion_JHO.md # Reflexion von JHO 
-└── Reflexion_PAE.md # Reflexion von PAE
-```
+
 
 ## AWS S3-Buckets:
 
@@ -167,7 +164,7 @@ ID;Nachname;Vorname;Strasse;PLZ;Ort;Tel
 
 ## Bucket-Erstellung
 
-![Bucket-Erstellung](bucket-creation.png)  
+<img width="299" alt="image" src="https://github.com/user-attachments/assets/42b57b72-0691-47d8-9c46-71d16d101777" />
 
 ### Ergebnis
 
@@ -192,7 +189,7 @@ Die generierten Namen enthalten eindeutige IDs, wodurch Namenskonflikte ausgesch
 
 ## Erstellung der Lambda-Funktion
 
-![Lambda-Erstellung](lambda-creation.png)  
+<img width="498" alt="image" src="https://github.com/user-attachments/assets/397b88f4-e2a2-42a1-a62f-3839faf0b00d" />
 
 ### Ergebnis
 
@@ -211,7 +208,7 @@ Die Lambda-Funktion wurde erfolgreich erstellt und mit den korrekten Parametern 
 
 ## CSV-Upload und JSON-Download
 
-![CSV-Upload und JSON-Download](csv-to-json.png)  
+<img width="396" alt="image" src="https://github.com/user-attachments/assets/d3904f5d-eb3e-47c2-895c-843c1f04247b" />
 
 ### Ergebnis
 
@@ -232,3 +229,26 @@ Zusätzlich wurde getestet, ob unterschiedliche Delimiter-Zeichen (z. B. `;`, `,
 ## Fazit
 
 Alle Tests wurden erfolgreich durchgeführt, und die erwarteten Ergebnisse konnten erzielt werden. Potenzielle Fehler wurden analysiert und entsprechende Lösungen dokumentiert, um eine reibungslose Ausführung des Projekts sicherzustellen.
+
+## Reflexion
+
+### Reflexion Jan Hollenstein
+
+Ich fand dieses Projekt sehr spannend und gut, da wir selbstständig daran arbeiten konnten. Allerdings war die Zeit, die wir in der Schule dafür bekommen haben, meiner Meinung nach etwas knapp. Besonders für die Organisation und die Aufteilung der Aufgaben hätten wir etwas mehr Zeit benötigt. Trotzdem haben wir es geschafft, das Projekt innerhalb des vorgegebenen Zeitrahmens erfolgreich abzuschließen.
+
+Ich hatte zunächst Schwierigkeiten mit den Berechtigungen, da im Code der Benutzer von Andrin fest programmiert war. Nachdem wir das angepasst hatten, funktionierte alles recht gut, und ich konnte das Projekt auch auf meiner VM testen, was einwandfrei klappte. Die Zusammenarbeit im Team verlief insgesamt sehr gut. Wir haben die Aufgaben sinnvoll aufgeteilt und effizient im Team zusammengearbeitet.
+
+### Reflexion Pascal
+
+Eine AWS Lambda Funktion zu erstellen und zu testen war lehrreich und interessant.
+Wir haben am Afang lange gebraucht um uns in das Projekt einzuarbeiten und die Aufgaben zu verteilen.
+Wir hätten dafür ein wenig mehr Zeit in der Schule benötigt, weil es in Person einfacher war das Projekt miteinander zu besprechen.
+Die selbständige Arbeit in der Gruppe hat mir Spass bereitet. Wir haben gut harmoniert und miteinander eine aktive Kommunikation gepflegt.
+
+### Reflexion Andrin 
+
+Ich fand das Projekt spannend und die Aufgabenstellung hat zu einer interessanten Lösung geführt. Am Anfang waren wir nicht sehr organisiert was uns Zeit gekostet hat. Wir hätten dadurch das Projekt einige Zeit früher schon abschliessen können. Auch hatten wir ein wenig Schwierigkeiten mit dem Git was die Commit Historie ein wenig durcheinander macht. 
+
+Die Berechtigung der LabRole hat uns etwas Schwierigkeiten besorgt. Zuerst haben wir die falsche Rolle benutzt und danach habe ich ausversehen meinen role arn hardgecoded. Das heisste die anderen zwei konnten das Skript nicht mehr testen und ich machte das immer bis wir es dan dynamisch gelöst haben. Aber ansonsten sind wir relativ gut vorangekommen.
+
+
