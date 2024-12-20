@@ -62,7 +62,7 @@ echo "Waiting for Lambda to process the file..."
 sleep 10  # Wartezeit, damit Lambda die Datei verarbeitet
  
 echo "Downloading result from Output Bucket..."
-aws s3 cp "s3://$OUT_BUCKET_NAME/$INPUT_FILE.json" "$OUTPUT_FILE"
+aws s3 cp "s3://$OUT_BUCKET_NAME/$OUTPUT_FILE" "$OUTPUT_FILE"
  
 echo "Output JSON file downloaded. Displaying content:"
 cat "$OUTPUT_FILE"
