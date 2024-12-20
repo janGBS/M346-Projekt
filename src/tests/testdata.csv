@@ -1,4 +1,4 @@
-name,age,city
-Alice,30,New York
-Bob,25,Los Angeles
-Charlie,35,Chicago
+ID;Nachname;Vorname;Strasse;PLZ;Ort;Tel
+1;Scheidegger;Urs;Griittbachstrasse 2;4542;Luterbach;032 682 51 37
+2;Buhrfeind;Evi;Grittbachstrasse 2;4542;Luterbach;032 682 51 27
+3;Ridisiihli;Barbara;Rathausgasse;5000;Aarau;062 822 11 35
