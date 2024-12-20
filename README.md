@@ -57,6 +57,3 @@ aws sts get-caller-identity
 
 ---
 
-### Hinweise:
-- Stellen Sie sicher, dass Ihre Internetverbindung stabil ist.
-- Für Fragen oder Probleme konsultieren Sie die [AWS CLI Dokumentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
