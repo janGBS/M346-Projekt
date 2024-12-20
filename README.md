@@ -234,10 +234,13 @@ Alle Tests wurden erfolgreich durchgeführt, und die erwarteten Ergebnisse konnt
 
 ### Reflexion Jan Hollenstein
 
-Ich fand dieses Projekt sehr spannend und gut, da wir selbstständig daran arbeiten konnten. Allerdings war die Zeit, die wir in der Schule dafür bekommen haben, meiner Meinung nach etwas knapp. Besonders für die Organisation und die Aufteilung der Aufgaben hätten wir etwas mehr Zeit benötigt. Trotzdem haben wir es geschafft, das Projekt innerhalb des vorgegebenen Zeitrahmens erfolgreich abzuschließen.
+Dieses Projekt war für mich eine spannende und lehrreiche Erfahrung. Besonders hat mir gefallen, dass wir die Möglichkeit hatten, selbstständig an den Aufgaben zu arbeiten und Verantwortung für verschiedene Aspekte des Projekts zu übernehmen. Allerdings musste ich feststellen, dass die Zeit, die uns in der Schule dafür zur Verfügung stand, etwas knapp bemessen war. Gerade in der Anfangsphase hätten wir mehr Zeit benötigt, um uns besser zu organisieren und die Aufgaben klarer aufzuteilen. Zu Beginn waren wir als Team nicht optimal strukturiert, und es hat etwas gedauert, bis wir wirklich effektiv zusammengearbeitet haben.
 
-Ich hatte zunächst Schwierigkeiten mit den Berechtigungen, da im Code der Benutzer von Andrin fest programmiert war. Nachdem wir das angepasst hatten, funktionierte alles recht gut, und ich konnte das Projekt auch auf meiner VM testen, was einwandfrei klappte. Die Zusammenarbeit im Team verlief insgesamt sehr gut. Wir haben die Aufgaben sinnvoll aufgeteilt und effizient im Team zusammengearbeitet.
+Eine besondere Herausforderung waren für mich die Berechtigungen im Code, da die Benutzerdaten von Andrin fest programmiert waren. Diese Situation hat anfangs für Verwirrung gesorgt und den Fortschritt etwas verzögert. Sobald wir das jedoch angepasst hatten, lief die technische Umsetzung reibungslos, und ich konnte das Projekt auch erfolgreich auf meiner eigenen VM testen, was ein sehr motivierender Moment war.
 
+Trotz der anfänglichen Schwierigkeiten war die Zusammenarbeit im Team eine positive Erfahrung. Nach der ersten Orientierungsphase haben wir die Aufgaben sinnvoll aufgeteilt und konnten so effizient vorgehen. Besonders beeindruckend fand ich, wie schnell wir gemeinsam Lösungen für auftretende Probleme gefunden haben.
+
+Insgesamt bin ich stolz darauf, dass wir es geschafft haben, das Projekt innerhalb des vorgegebenen Zeitrahmens erfolgreich abzuschließen. Dieses Projekt hat mir nicht nur technische Kenntnisse vermittelt, sondern auch gezeigt, wie wichtig Organisation und Teamarbeit sind, um ein gemeinsames Ziel zu erreichen.
 ### Reflexion Pascal
 
 Eine AWS Lambda Funktion zu erstellen und zu testen war lehrreich und interessant.
