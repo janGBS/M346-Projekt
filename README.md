@@ -241,6 +241,7 @@ Eine besondere Herausforderung waren für mich die Berechtigungen im Code, da di
 Trotz der anfänglichen Schwierigkeiten war die Zusammenarbeit im Team eine positive Erfahrung. Nach der ersten Orientierungsphase haben wir die Aufgaben sinnvoll aufgeteilt und konnten so effizient vorgehen. Besonders beeindruckend fand ich, wie schnell wir gemeinsam Lösungen für auftretende Probleme gefunden haben.
 
 Insgesamt bin ich stolz darauf, dass wir es geschafft haben, das Projekt innerhalb des vorgegebenen Zeitrahmens erfolgreich abzuschließen. Dieses Projekt hat mir nicht nur technische Kenntnisse vermittelt, sondern auch gezeigt, wie wichtig Organisation und Teamarbeit sind, um ein gemeinsames Ziel zu erreichen.
+
 ### Reflexion Pascal
 
 Eine AWS Lambda Funktion zu erstellen und zu testen war lehrreich und interessant.
@@ -248,10 +249,13 @@ Wir haben am Afang lange gebraucht um uns in das Projekt einzuarbeiten und die A
 Wir hätten dafür ein wenig mehr Zeit in der Schule benötigt, weil es in Person einfacher war das Projekt miteinander zu besprechen.
 Die selbständige Arbeit in der Gruppe hat mir Spass bereitet. Wir haben gut harmoniert und miteinander eine aktive Kommunikation gepflegt.
 
+Ich habe die Aufgabe der Dokumentation auf mich genommen. Es hat sich manchmal als schwierig erwisen alles zu dokumentieren, wenn man es nicht alleine entwickelt hat. Manchmal haben mir die aktuellen Informationen gefehlt oder mir sind Änderungen entgangen. Ich würde die Dokumentation beim nächsten besser aufteilen, sodass jeder einen Teil dokumentieren muss.
+
+Ebenfalls hatte ich am Anfang Probleme mit Github.
+Beim nächsten Projekt werde ich sichergehen, dass alles von Anfang an so funktioniert wie es vorgesehen ist.
+
 ### Reflexion Andrin 
 
 Ich fand das Projekt spannend und die Aufgabenstellung hat zu einer interessanten Lösung geführt. Am Anfang waren wir nicht sehr organisiert was uns Zeit gekostet hat. Wir hätten dadurch das Projekt einige Zeit früher schon abschliessen können. Auch hatten wir ein wenig Schwierigkeiten mit dem Git was die Commit Historie ein wenig durcheinander macht. 
 
 Die Berechtigung der LabRole hat uns etwas Schwierigkeiten besorgt. Zuerst haben wir die falsche Rolle benutzt und danach habe ich ausversehen meinen role arn hardgecoded. Das heisste die anderen zwei konnten das Skript nicht mehr testen und ich machte das immer bis wir es dan dynamisch gelöst haben. Aber ansonsten sind wir relativ gut vorangekommen.
-
-
