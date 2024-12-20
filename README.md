@@ -179,7 +179,7 @@ Die generierten Namen enthalten eindeutige IDs, wodurch Namenskonflikte ausgesch
 1. **Falsche Region:**
    - Region in der Datei `init.sh` auf `us-east-1` setzen.
 2. **Falsche AWS Credentials:**
-   - Zugangsdaten korrekt konfigurieren, wie in der Dokumentation beschrieben (`aws configure`).
+   - Zugangsdaten korrekt konfigurieren, wie in der Dokumentation beschrieben (`.aws/credentials`).
 3. **Cloud-Dienst nicht aktiv:**
    - AWS Cloud-Dienste starten und sicherstellen, dass die Umgebung verfügbar ist.
 4. **Bucket existiert bereits:**
@@ -229,6 +229,11 @@ Zusätzlich wurde getestet, ob unterschiedliche Delimiter-Zeichen (z. B. `;`, `,
 ## Fazit
 
 Alle Tests wurden erfolgreich durchgeführt, und die erwarteten Ergebnisse konnten erzielt werden. Potenzielle Fehler wurden analysiert und entsprechende Lösungen dokumentiert, um eine reibungslose Ausführung des Projekts sicherzustellen.
+
+## Quellen
+- Chatgpt.com
+- modul346 Skript
+- https://sysadmins.co.za/convert-csv-to-json-files-with-aws-lambda-and-s3-events
 
 ## Reflexion
 
