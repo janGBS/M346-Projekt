@@ -1,7 +1,7 @@
 # Datei:          init.sh
 # Autor:          jan.hollenstein@edu.gbssg.ch, pascal.aeschbacher@edu.gbssg.ch, andrin.Sutter@edu.gbssg.ch
 # Datum:          20.12.2024
-# Version:        1.9
+# Version:        2.1
 # Beschreibung:   Bash-Skript für automatisiertes Erstellen von Buckets, Lambda-Funktion erstellen und CSV-Datei in JSON-Datei umwandeln in AWS Cloud.
 
 #!/bin/bash
