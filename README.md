@@ -24,6 +24,7 @@ git clone https://github.com/janGBS/M346-Projekt.git
 2. Melden Sie sich an und starten Sie Ihre Cloud-Instanz.
 3. Sobald das grüne Licht leuchtet:
    - Kopieren Sie den AWS-CLI Key aus den **AWS Details**.
+<img width="1880" alt="image" src="https://github.com/user-attachments/assets/4cd8195c-041a-4c2f-ba8d-9f55d5ad2831" />
 
 ---
 
