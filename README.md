@@ -56,4 +56,83 @@ aws sts get-caller-identity
     ```
 
 ---
+# Aufbau des Services
 
+Der Service basiert auf der Verwendung von AWS Cloud-Diensten und ist in folgende Hauptkomponenten unterteilt:
+
+## AWS S3-Buckets:
+
+- **Input Bucket**:Hier werden CSV-Dateien hochgeladen.
+- **Output Bucket**: Speichert die konvertierten JSON-Dateien.
+
+## AWS Lambda-Funktion:
+
+- Wird durch S3-Events ausgelöst.
+- Liest CSV-Dateien aus dem Input Bucket und schreibt JSON-Dateien in den Output Bucket.
+- Unterstützt einstellbare Parameter wie Delimiter über Umgebungsvariablen.
+
+## Bash-Skript (`init.sh`):
+
+- Automatisiert die Erstellung der AWS-Ressourcen.
+- Deployt die Lambda-Funktion.
+- Testet die Konvertierungsfunktion durch Hochladen einer Beispiel-CSV-Datei.
+
+---
+
+# Lambda-Funktion
+
+Die Lambda-Funktion konvertiert CSV-Daten in JSON. Sie enthält folgende Schlüsselaspekte:
+
+## Trigger:
+
+- Wird durch das Hochladen einer Datei in den Input Bucket ausgelöst.
+
+## Parameter:
+
+- Der Delimiter der CSV-Dateien kann über die Umgebungsvariable `CSV_DELIMITER` angepasst werden (Standard: Semikolon).
+
+## Fehlerbehandlung:
+
+- Bei Fehlern werden diese geloggt und eine Fehlermeldung wird zurückgegeben.
+
+## Output:
+
+- Die JSON-Datei wird im Output Bucket mit der gleichen Basisdateiname gespeichert, jedoch mit der Endung `.json`.
+
+---
+
+# Testdaten
+
+## Beispiel CSV-Datei (Eingabe):
+
+```csv
+ID;Nachname;Vorname;Strasse;PLZ;Ort;Tel
+1;Scheidegger;Urs;Griittbachstrasse 2;4542;Luterbach;032 682 51 37
+```
+
+## Erwartete JSON-Ausgabe:
+
+```JSON
+[
+   {
+      "ID": "1",
+      "Nachname": "Scheidegger",
+      "Vorname": "Urs",
+      "Strasse": "Griittbachstrasse 2",
+      "PLZ": "4542",
+      "Ort": "Luterbach",
+      "Tel": "032 682 51 37"
+   }
+]
+```
+
+# Fehlerprotokollierung
+
+## S3-Events:
+
+- Falls ein Fehler auftritt, z. B. durch eine ungültige CSV-Datei, wird dies im CloudWatch-Log festgehalten.
+  
+## Lambda-Ausgabe:
+
+- **Bei Erfolg**: `StatusCode 200` mit einer Erfolgsnachricht.
+- **Bei Fehlern**: `StatusCode 500` und eine detaillierte Fehlermeldung. 
