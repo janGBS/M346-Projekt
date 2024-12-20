@@ -60,6 +60,24 @@ aws sts get-caller-identity
 
 Der Service basiert auf der Verwendung von AWS Cloud-Diensten und ist in folgende Hauptkomponenten unterteilt:
 
+---
+
+## Projektaufbau
+```
+projektverzeichnis/ 
+│ 
+├── src/ 
+│   ├── init.sh
+|   ├── lambda_function.py  
+│   └── tests/
+│       ├── testdata.csv  
+│       └── testdata.json 
+├── README.md # Dokumentation 
+├── Reflexion_ASU.md # Reflexion von ASU 
+├── Reflexion_JHO.md # Reflexion von JHO 
+└── Reflexion_PAE.md # Reflexion von PAE
+```
+
 ## AWS S3-Buckets:
 
 - **Input Bucket**:Hier werden CSV-Dateien hochgeladen.
